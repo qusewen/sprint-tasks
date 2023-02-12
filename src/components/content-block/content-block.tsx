@@ -25,7 +25,7 @@ useEffect(() => {
 console.log(book[3],loading)
 
 if(loading){
-  <Loader/>
+ return <Loader/>
 }
 
   return (
