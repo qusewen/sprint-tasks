@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { reduserAcardionState } from "./redusers/acardion-reduser";
 import { reduserBurgerState } from './redusers/reduser'
+import { reduserBooks } from "./redusers/reduser-book";
 
 declare global {
     interface Window {
@@ -10,8 +11,10 @@ declare global {
 }
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
+    books: reduserBooks,
     burger: reduserBurgerState,
-    acardion: reduserAcardionState
+    acardion: reduserAcardionState,
+
 });
 
 export const store = createStore(

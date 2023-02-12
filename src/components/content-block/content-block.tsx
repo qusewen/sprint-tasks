@@ -1,13 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBooks } from '../../redux/actions/books-action';
 import { Card } from '../card/card';
 import { FilterBar } from '../filter-bar/filter-bar';
 import {books} from '../../assets/constants/mock-data'
 import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
+import { Loader } from '../loader/loader';
+
+
+
 
 export const ContentBlock = () => {
   const [flag, setFlag] = useState(1);
-  console.log(books)
+  const dispatch: any = useDispatch();
+  const {book, loading} = useSelector((state:any) => state.books)
+
+useEffect(() => {
+  dispatch(getBooks())
+
+
+},[dispatch])
+
+console.log(book[3],loading)
+
+if(loading){
+  <Loader/>
+}
+
   return (
     <div>
       <FilterBar
@@ -19,24 +39,26 @@ export const ContentBlock = () => {
         }}
       />
       <div className='content'>
-
-      {books.map((card) =>
-        (<Card
+{book.map((card: any) =>
+(<Card
       cardClass={flag === 1 ? 'card' : 'line__card'}
        cardImg={flag === 1 ? 'card__photo_img' : 'line_img'}
-       img={card.countImg === 0? unbook :  card.img.img1}
+       img={!card?.image?.url? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
        lineCard={flag === 1 ? 'card__content' : 'line_info'}
        cardName={flag === 1 ? 'card__name' : 'line__card_name'}
        name={card.title}
        cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
        cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
        rateContent={flag === 1 ? 'card__rate' : 'item2'}
-       author={card.author}
-       val={card.rate}
+       author={card.authors}
+       val={card.rating}
        buttonContentBody={flag === 1 ? 'card__button' : 'item3'}
        buttonContent={flag === 1 ? 'card__button' : ' line__button'}
-       id={card.id}/>)
-      )}
+       id={card.id}
+       key={card.id}/>)
+
+)}
+
       </div>
     </div>
   );

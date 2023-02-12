@@ -2,14 +2,12 @@
 .card {
     margin-right: 16px;
     margin-bottom: 24px;
-
-
     width: 190px;
     height: 470px;
     border-radius: 10px;
     box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2),
     0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
+    0px 1px 5px rgba(24, 25, 26, 0.24);
     padding: 8px 8px 16px;
     display: flex;
     flex-direction: column;
@@ -52,6 +50,11 @@
         letter-spacing: 0.1px;
         color: #363636;
         margin-bottom: 8px;
+        display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+height: 54px;
     }
 
     &__author {
@@ -63,6 +66,10 @@
         letter-spacing: 0.1px;
         color: #727272;
         margin-bottom: 28px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
 

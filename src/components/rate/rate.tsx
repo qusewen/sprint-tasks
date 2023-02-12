@@ -10,7 +10,7 @@ export const Rate = ({val}: Props) => {
   const [hover, setHover] = useState(null);
   return (
     <div>
-      {val===0? <p className='rate-no-rate'>ещё нет оценок</p>:[...Array(5)].map((star, i) => {
+      {val===null? <p className='rate-no-rate'>ещё нет оценок</p>:[...Array(5)].map((star, i) => {
         const ratingValue:any = i + 1;
         return (
 
