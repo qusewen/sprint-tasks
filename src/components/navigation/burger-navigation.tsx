@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Navigation } from './navigation';
 import { categories } from '../../assets/constants/mock-data';
 import './navigation.scss';
+import { getCategories } from '../../redux/actions/categories-action';
 
 type RootState = {
   burger: any
@@ -14,16 +15,18 @@ export const BurgerNavigation = () => {
   const [test, setTest] = useState('');
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
-  const dispatch = useDispatch();
+  const {categories,success, error} = useSelector((state: any) => state.categories)
+  const dispatch: any = useDispatch();
   const location = useLocation();
   useEffect(() => {
     if(location.pathname === '/treaty' || location.pathname === '/rules'){
         setOpenAcard(false)
     }else{
       setOpenAcard(true)
+      dispatch(getCategories())
     }
 
-  },[location.pathname])
+  },[location.pathname,dispatch])
 
   function burgerStateClose() {
     dispatch({ type: 'closeBurger' });
@@ -81,16 +84,16 @@ export const BurgerNavigation = () => {
                     <span className='nav__list_second-item--count'>100</span>
                   </li>
 
-                  {categories.map((element) => (
+                  {categories.map((element:any) => (
                     <li key={Math.random()} className='nav__list_second-item'>
                       <NavLink
                         onClick={closeBurgerMenu}
                         className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                        to={element.category}
+                        to={`/books/${element.path}`}
                       >
-                        {element.label}
+                        {element.name}
                       </NavLink>
-                      <span className='nav__list_second-item--count'>{element.coutn}</span>
+                      {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
                     </li>
                   ))}
                 </ul>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
 import './navigation.scss';
-import { categories } from '../../assets/constants/mock-data.js';
+// import { categories } from '../../assets/constants/mock-data.js';
+import { getCategories } from '../../redux/actions/categories-action';
 
 const activeStyle = {
   background: 'linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%)',
@@ -16,16 +17,22 @@ export const Navigation = () => {
   const valueStateBurger = useSelector((state:RootState) => state.burger);
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
-  const dispatch = useDispatch();
+  const {categories,success, error} = useSelector((state: any) => state.categories)
+  const dispatch: any = useDispatch();
   const location = useLocation();
   useEffect(() => {
+
+
+
+
     if(location.pathname === '/treaty' || location.pathname === '/rules'){
         setOpenAcard(false)
     }else{
       setOpenAcard(true)
+      dispatch(getCategories())
     }
 
-  },[location.pathname])
+  },[location.pathname, dispatch])
 
   function burgerStateClose() {
     dispatch({ type: 'closeBurger' });
@@ -73,16 +80,16 @@ export const Navigation = () => {
                 <span className='nav__list_second-item--count'>100</span>
               </li>
 
-              {categories.map((element) => (
-                <li key={Math.random()} className='nav__list_second-item'>
+              {categories.map((element:any) => (
+                <li key={element.id} className='nav__list_second-item'>
                   <NavLink
                     onClick={closeBurgerMenu}
                     className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                    to={element.category}
+                    to={`/books/${element.path}`}
                   >
-                    {element.label}
+                    {element.name}
                   </NavLink>
-                  <span className='nav__list_second-item--count'>{element.coutn}</span>
+                  {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
                 </li>
               ))}
             </ul>
