@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
 import './navigation.scss';
 // import { categories } from '../../assets/constants/mock-data.js';
 import { getCategories } from '../../redux/actions/categories-action';
+import { Loader } from '../loader/loader';
 
 const activeStyle = {
   background: 'linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%)',
@@ -17,7 +18,7 @@ export const Navigation = () => {
   const valueStateBurger = useSelector((state:RootState) => state.burger);
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
-  const {categories,success, error} = useSelector((state: any) => state.categories)
+  const {categories,loading, error} = useSelector((state: any) => state.categories)
   const dispatch: any = useDispatch();
   const location = useLocation();
   useEffect(() => {
@@ -39,7 +40,9 @@ export const Navigation = () => {
     }
   };
 
-
+if(loading){
+return <Loader/>
+}
 
 
   return (

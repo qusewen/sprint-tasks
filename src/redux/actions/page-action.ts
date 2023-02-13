@@ -2,6 +2,7 @@ import axios from "axios";
 
 
 
+
 export const pageType = {
     SET_PAGE: "SET_PAGE",
     SET_PAGE_SUCCESS: "SET_PAGE_SUCCESS",
@@ -22,10 +23,9 @@ export const getPage = (id:number) =>(
               payload: res.data,
 
             })
-              .catch((err: any) => {
-                console.log(err.response, err);
-                dispatch({ type: pageType.SET_PAGE_ERROR, payload: err.response })
-              })
+              // .catch((err: any) => {
+              //   dispatch({ type: pageType.SET_PAGE_ERROR, payload: err.payload })
+              // })
           })
 
         }

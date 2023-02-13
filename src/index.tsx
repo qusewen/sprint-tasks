@@ -20,7 +20,7 @@ root.render(
     <Header/>
       <Routes>
         <Route  path='/'  element={<MainPage />} />
-        <Route path='/bookpage/:id' element={<BookPage/>} />
+        <Route path='/books/all/:id' element={<BookPage/>} />
         <Route path='/books' element={<MainPage />} />
         <Route path='/books/business' element={<MainPage />} />
         <Route path='/books/psychology' element={<MainPage />} />

@@ -36,10 +36,10 @@ export const BookPage = () => {
   };
   if (loading) {
     return <Loader />;
+  } if(error){
+    return <ResError/>
   }
-   if(error){
-  return <ResError/>
-  }
+
   return (
     <section className='book'>
       <RouteBar categori={page?.categories} name={page?.title} />

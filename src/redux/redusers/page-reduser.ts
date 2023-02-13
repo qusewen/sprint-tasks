@@ -30,7 +30,7 @@ export const reduserPage =(state = initialState,  action: any) => {
         case pageType.SET_PAGE_ERROR:
           return {
             ...state,
-            error: action.payload,
+            error: true,
           };
         default:
           return state;

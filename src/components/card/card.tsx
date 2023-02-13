@@ -36,7 +36,7 @@ export const Card = ({
   buttonContent,
   id
 }: Props) => (
-  <Link className={cardClass} data-test-id='card' to={`/bookpage/${id}`}>
+  <Link className={cardClass} data-test-id='card' to={`/books/all/${id}`}>
     <div className='card__photo'>
       <img src={img} alt='book' className={cardImg} />
     </div>
