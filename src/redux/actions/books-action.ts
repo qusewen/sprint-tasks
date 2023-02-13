@@ -22,10 +22,13 @@ export const getBooks = () =>(
               payload: res.data,
 
             })
-              // .catch((err: any) => {
-              //   dispatch({ type: bookTypes.SET_BOOKS_ERROR, payload: err.response })
-              // })
+
           })
+          .catch((err: any) => {
+
+            dispatch({ type: bookTypes.SET_BOOKS_ERROR, payload: err.response })
+
+        })
 
         }
 

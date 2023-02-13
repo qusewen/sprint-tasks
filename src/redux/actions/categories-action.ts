@@ -22,10 +22,11 @@ export const getCategories = () =>(
               payload: res.data,
 
             })
-            //   .catch((err: any) => {
 
-            //     dispatch({ type: categoriesType.SET_CATEGORIES_ERROR, payload: err.response })
-            //   })
+          })
+          .catch((err: any) => {
+
+            dispatch({ type: categoriesType.SET_CATEGORIES_ERROR, payload: err.response })
           })
 
         }

@@ -5,6 +5,7 @@ import './navigation.scss';
 // import { categories } from '../../assets/constants/mock-data.js';
 import { getCategories } from '../../redux/actions/categories-action';
 import { Loader } from '../loader/loader';
+import { ResError } from '../res-error/res-error';
 
 const activeStyle = {
   background: 'linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%)',
@@ -43,6 +44,9 @@ export const Navigation = () => {
 if(loading){
 return <Loader/>
 }
+if(error){
+  return <ResError/>
+  }
 
 
   return (

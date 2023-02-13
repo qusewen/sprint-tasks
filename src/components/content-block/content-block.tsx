@@ -7,6 +7,7 @@ import {books} from '../../assets/constants/mock-data'
 import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
 import { Loader } from '../loader/loader';
+import { ResError } from '../res-error/res-error';
 
 
 
@@ -14,15 +15,18 @@ import { Loader } from '../loader/loader';
 export const ContentBlock = () => {
   const [flag, setFlag] = useState(1);
   const dispatch: any = useDispatch();
-  const {book, loading} = useSelector((state:any) => state.books)
+  const {book,error, loading} = useSelector((state:any) => state.books)
 
 useEffect(() => {
+
   dispatch(getBooks())
 
 
 },[dispatch])
 
-
+if(error){
+return <ResError/>
+}
 if(loading){
  return <Loader/>
 }

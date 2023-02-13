@@ -5,6 +5,8 @@ import { Navigation } from './navigation';
 import { categories } from '../../assets/constants/mock-data';
 import './navigation.scss';
 import { getCategories } from '../../redux/actions/categories-action';
+import { ResError } from '../res-error/res-error';
+import { Loader } from '../loader/loader';
 
 type RootState = {
   burger: any
@@ -15,7 +17,7 @@ export const BurgerNavigation = () => {
   const [test, setTest] = useState('');
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
-  const {categories,success, error} = useSelector((state: any) => state.categories)
+  const {categories,loading, error} = useSelector((state: any) => state.categories)
   const dispatch: any = useDispatch();
   const location = useLocation();
   useEffect(() => {
@@ -44,6 +46,12 @@ export const BurgerNavigation = () => {
       setOpenAcard(true);
     }
   };
+  if(error){
+    return <ResError/>
+    }
+    if(loading){
+      return <Loader/>
+    }
   return (
     <>
       <button

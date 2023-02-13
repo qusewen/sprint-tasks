@@ -23,11 +23,11 @@ export const getPage = (id:number) =>(
               payload: res.data,
 
             })
-              // .catch((err: any) => {
-              //   dispatch({ type: pageType.SET_PAGE_ERROR, payload: err.payload })
-              // })
-          })
 
+          })
+              .catch((err: any) => {
+                dispatch({ type: pageType.SET_PAGE_ERROR, payload: err.payload })
+              })
         }
 
 

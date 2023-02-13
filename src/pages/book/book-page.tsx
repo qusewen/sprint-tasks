@@ -34,11 +34,14 @@ export const BookPage = () => {
       setOpenAcard(true);
     }
   };
-  if (loading) {
-    return <Loader />;
-  } if(error){
+
+  if(error){
     return <ResError/>
   }
+  if (loading) {
+    return <Loader />;
+  }
+
 
   return (
     <section className='book'>
@@ -49,7 +52,7 @@ export const BookPage = () => {
             {page?.images?.length !== 0 ? (
               <Swipers
                 slide={page?.images?.map((e: any) => (
-                  <SwiperSlide>
+                  <SwiperSlide key={Math.random()}>
                     <img alt='slide' src={`https://strapi.cleverland.by${e?.url}`} />
                   </SwiperSlide>
                 ))}
@@ -57,7 +60,7 @@ export const BookPage = () => {
                   page?.images?.length < 2
                     ? ''
                     : page?.images?.map((e: any) => (
-                        <SwiperSlide>
+                        <SwiperSlide key={Math.random()}>
                           <img alt='slide' src={`https://strapi.cleverland.by${e?.url}`} className='little_img' />
                         </SwiperSlide>
                       ))
@@ -146,7 +149,7 @@ export const BookPage = () => {
             <div className={openAcard ? 'reviews__body' : 'reviews__body_close'}>
               <ul className='reviews__list'>
                 {page?.comments?.map((i: any) => (
-                  <li className='reviews__list_item'>
+                  <li key={Math.random()} className='reviews__list_item'>
                     <div className='reviews__person'>
                       <img className='reviews__person_img' src={personImg} alt='person' />
                       <div className='person__body'>
