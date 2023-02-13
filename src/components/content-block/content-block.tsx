@@ -22,7 +22,6 @@ useEffect(() => {
 
 },[dispatch])
 
-console.log(book[3],loading)
 
 if(loading){
  return <Loader/>
