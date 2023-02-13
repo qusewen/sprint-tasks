@@ -8,6 +8,7 @@ import personImg from '../../assets/svg/person.svg';
 import { Button } from '../../components/button/button';
 import { Loader } from '../../components/loader/loader';
 import { Rate } from '../../components/rate/rate';
+import { ResError } from '../../components/res-error/res-error';
 import { RouteBar } from '../../components/route-bar/route-bar';
 import { Swipers } from '../../components/swiper/swiper';
 import { getPage } from '../../redux/actions/page-action';
@@ -20,7 +21,7 @@ type Param = {
 export const BookPage = () => {
   const [openAcard, setOpenAcard] = useState(false);
   const { id } = useParams<Param>();
-  const { page, loading } = useSelector((state: any) => state.page);
+  const { page, loading, error } = useSelector((state: any) => state.page);
 
   const dispatch: any = useDispatch();
   useEffect(() => {
@@ -35,6 +36,9 @@ export const BookPage = () => {
   };
   if (loading) {
     return <Loader />;
+  }
+   if(error){
+  return <ResError/>
   }
   return (
     <section className='book'>

@@ -21,10 +21,6 @@ export const Navigation = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
   useEffect(() => {
-
-
-
-
     if(location.pathname === '/treaty' || location.pathname === '/rules'){
         setOpenAcard(false)
     }else{
