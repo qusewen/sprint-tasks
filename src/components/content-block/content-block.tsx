@@ -8,13 +8,14 @@ import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
 import { Loader } from '../loader/loader';
 import { ResError } from '../res-error/res-error';
+import { AppDispatch } from '../../redux/store';
 
 
 
 
 export const ContentBlock = () => {
   const [flag, setFlag] = useState(1);
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const {book,error, loading} = useSelector((state:any) => state.books)
 
 useEffect(() => {

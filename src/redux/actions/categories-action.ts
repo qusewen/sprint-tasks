@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AppDispatch } from "../store";
 
 
 
@@ -11,7 +12,7 @@ export const categoriesType = {
 
 export const getCategories = () =>(
 
-    async (dispatch: any) =>{
+    async (dispatch: AppDispatch) =>{
 
         dispatch({ type: categoriesType.SET_CATEGORIES });
         axios

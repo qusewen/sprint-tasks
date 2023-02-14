@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AppDispatch } from "../store";
 
 
 
@@ -12,7 +13,7 @@ export const pageType = {
 
 export const getPage = (id:number) =>(
 
-    async (dispatch: any) =>{
+    async (dispatch: AppDispatch) =>{
 
         dispatch({ type: pageType.SET_PAGE });
         axios

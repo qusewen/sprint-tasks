@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AppDispatch } from "../store";
 
 
 
@@ -11,7 +12,7 @@ export const bookTypes = {
 
 export const getBooks = () =>(
 
-    async (dispatch: any) =>{
+    async (dispatch: AppDispatch) =>{
 
         dispatch({ type: bookTypes.SET_BOOKS });
         axios

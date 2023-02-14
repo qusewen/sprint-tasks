@@ -7,6 +7,7 @@ import './navigation.scss';
 import { getCategories } from '../../redux/actions/categories-action';
 import { ResError } from '../res-error/res-error';
 import { Loader } from '../loader/loader';
+import { AppDispatch } from '../../redux/store';
 
 type RootState = {
   burger: any
@@ -18,7 +19,7 @@ export const BurgerNavigation = () => {
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
   const {categories,loading, error} = useSelector((state: any) => state.categories)
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const location = useLocation();
   useEffect(() => {
     if(location.pathname === '/treaty' || location.pathname === '/rules'){

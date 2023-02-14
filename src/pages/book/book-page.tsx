@@ -12,6 +12,7 @@ import { ResError } from '../../components/res-error/res-error';
 import { RouteBar } from '../../components/route-bar/route-bar';
 import { Swipers } from '../../components/swiper/swiper';
 import { getPage } from '../../redux/actions/page-action';
+import { AppDispatch } from '../../redux/store';
 import './book-page.scss';
 
 type Param = {
@@ -23,7 +24,7 @@ export const BookPage = () => {
   const { id } = useParams<Param>();
   const { page, loading, error } = useSelector((state: any) => state.page);
 
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getPage(id));
   }, [dispatch, id]);
