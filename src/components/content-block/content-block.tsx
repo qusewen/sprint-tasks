@@ -19,17 +19,14 @@ export const ContentBlock = () => {
   const {book,error, loading} = useSelector((state:any) => state.books)
 
 useEffect(() => {
-
   dispatch(getBooks())
-
-
 },[dispatch])
 
 if(error){
-return <ResError/>
+  return <ResError/>
 }
-if(loading){
- return <Loader/>
+if (loading) {
+  return <Loader  errors={error}/>;
 }
 
   return (

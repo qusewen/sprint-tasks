@@ -1,10 +1,11 @@
+import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
 import { burgerState } from '../actions/action';
 
 const initialState = {
   burgerSet: false,
 };
 
-export const reduserBurgerState = (state = initialState, action:any) => {
+export const reduserBurgerState = (state = initialState, action: any) => {
   switch (action.type) {
     case burgerState.SET_BURGER:
       return {

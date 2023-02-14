@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { categoriesType } from "../actions/categories-action";
 
 
@@ -8,7 +9,7 @@ error: false,
 success: false,
 };
 
-export const reduserCategories =(state = initialState,  action: any) => {
+export const reduserCategories =(state = initialState,  action: PayloadAction) => {
 
     switch (action.type) {
         case categoriesType.SET_CATEGORIES:
@@ -30,7 +31,7 @@ export const reduserCategories =(state = initialState,  action: any) => {
         case categoriesType.SET_CATEGORIES_ERROR:
           return {
             ...state,
-            error: action.payload,
+            error: true,
           };
         default:
           return state;

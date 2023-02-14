@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { bookTypes } from "../actions/books-action";
 
 
@@ -8,7 +9,7 @@ error: false,
 success: false,
 };
 
-export const reduserBooks =(state = initialState,  action: any) => {
+export const reduserBooks =(state = initialState,  action: PayloadAction) => {
 
     switch (action.type) {
         case bookTypes.SET_BOOKS:
@@ -30,7 +31,7 @@ export const reduserBooks =(state = initialState,  action: any) => {
         case bookTypes.SET_BOOKS_ERROR:
           return {
             ...state,
-            error: action.payload,
+            error: true,
           };
         default:
           return state;

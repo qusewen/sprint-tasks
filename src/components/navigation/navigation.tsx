@@ -42,11 +42,11 @@ export const Navigation = () => {
     }
   };
 
-if(loading){
-return <Loader/>
-}
-if(error){
-  return <ResError/>
+  if(error){
+    return <ResError/>
+  }
+  if (loading) {
+    return <Loader  errors={error}/>;
   }
 
 

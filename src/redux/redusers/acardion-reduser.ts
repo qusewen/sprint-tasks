@@ -1,10 +1,27 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { acardionState } from '../actions/action';
 
 const initialState = {
     acardionSet: false,
 };
 
-export const reduserAcardionState = (state = initialState, action: any) => {
+
+interface ActionA{
+  type:'openAcardion'
+  openAcardion: boolean
+}
+
+interface ActionB{
+  type:'closeAcardion'
+  closeAcardion: boolean
+}
+interface ActionC{
+  type:'SET_ACARDION'
+  SET_ACARDION:boolean
+}
+type ActionTypes = ActionA | ActionB | ActionC
+export const reduserAcardionState = (state = initialState, action: PayloadAction<ActionTypes>) => {
+
   switch (action.type) {
     case acardionState.SET_ACARDION:
       return {

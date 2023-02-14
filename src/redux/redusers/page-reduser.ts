@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { pageType } from "../actions/page-action";
 
 
@@ -8,7 +9,7 @@ error: false,
 success: false,
 };
 
-export const reduserPage =(state = initialState,  action: any) => {
+export const reduserPage =(state = initialState,  action: PayloadAction) => {
 
     switch (action.type) {
         case pageType.SET_PAGE:

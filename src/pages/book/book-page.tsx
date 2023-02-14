@@ -16,12 +16,12 @@ import { AppDispatch } from '../../redux/store';
 import './book-page.scss';
 
 type Param = {
-  id: any;
+   id:  any;
 };
 
 export const BookPage = () => {
   const [openAcard, setOpenAcard] = useState(false);
-  const { id } = useParams<Param>();
+  const {id} = useParams<Param>();
   const { page, loading, error } = useSelector((state: any) => state.page);
 
   const dispatch: AppDispatch = useDispatch();
@@ -40,7 +40,7 @@ export const BookPage = () => {
     return <ResError/>
   }
   if (loading) {
-    return <Loader />;
+    return <Loader  errors={error}/>;
   }
 
 
