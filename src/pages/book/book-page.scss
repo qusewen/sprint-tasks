@@ -242,7 +242,9 @@
     align-items: center;
   }
 }
-
+.bodys{
+height: calc(100vh - 300px);
+}
 @media (max-width:1100px) {
   .container-book{
     width: 80%;

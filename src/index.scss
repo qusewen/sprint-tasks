@@ -13,17 +13,9 @@ body {
   background-color: #ffffff;
   color: #363636;
   letter-spacing: 0.1px;
-  min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
 }
-#root{
-min-height: 100vh;
-display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 *,
 *:before,
 *:after {

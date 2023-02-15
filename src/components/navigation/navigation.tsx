@@ -43,7 +43,68 @@ export const Navigation = () => {
   };
 
   if(error){
-    return <ResError/>
+    return(
+<>
+<ResError/>
+<aside className={valueStateBurger.burgerSet ? 'nav__burger' : 'nav'}>
+    <div className='nav__body'>
+      <ul className='nav__list'>
+        <li className='nav__list_item'>
+            <NavLink
+              onClick={() =>openAcard? setOpenAcard(false): setOpenAcard(true)}
+              data-test-id='navigation-showcase'
+              className={({ isActive }) =>
+                isActive
+                  ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
+                  : 'link nav__list_item-text nav__list_item-text-first '
+              }
+              to='/'
+            >
+              Витрина книг{' '}
+              <span className={openAcard? 'nav__list_item-text-first-open': 'nav__list_item-text-arrow-close'}> </span>
+            </NavLink>
+        </li>
+        <li  className='nav__list_item'>
+
+          <NavLink
+
+            data-test-id='navigation-terms'
+            className={({ isActive }) => (isActive ? 'first-link-active' : 'link')}
+            to='/rules'
+          >
+            <span  className='nav__list_item-text'>Правила пользования</span>
+          </NavLink>
+        </li>
+        <li   className='nav__list_item'>
+          <NavLink
+
+            data-test-id='navigation-contract'
+            className={({ isActive }) => (isActive ? 'first-link-active ': 'link ')}
+            to='/treaty'
+          >
+            <span  className='nav__list_item-text'>Договор оферты</span>
+          </NavLink>
+        </li>
+
+        <ul className='burger__navigation_profile'>
+          <li  className='nav__list_item'>
+            <NavLink onClick={closeBurgerMenu} to='/'>
+              <span className='nav__list_item-text'>Профиль</span>
+            </NavLink>
+          </li>
+          <li className='nav__list_item'>
+            <NavLink onClick={closeBurgerMenu} to='/'>
+              <span className='nav__list_item-text'>Выход</span>
+            </NavLink>
+          </li>
+        </ul>
+      </ul>
+    </div>
+  </aside>
+</>
+    )
+
+
   }
   if (loading) {
     return <Loader  errors={error}/>;
@@ -51,89 +112,88 @@ export const Navigation = () => {
 
 
   return (
-    <aside className={valueStateBurger.burgerSet ? 'nav__burger' : 'nav'}>
-      <div className='nav__body'>
-        <ul className='nav__list'>
-          <li className='nav__list_item'>
+  <aside className={valueStateBurger.burgerSet ? 'nav__burger' : 'nav'}>
+    <div className='nav__body'>
+      <ul className='nav__list'>
+        <li className='nav__list_item'>
+            <NavLink
+              onClick={() =>openAcard? setOpenAcard(false): setOpenAcard(true)}
+              data-test-id='navigation-showcase'
+              className={({ isActive }) =>
+                isActive
+                  ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
+                  : 'link nav__list_item-text nav__list_item-text-first '
+              }
+              to='/'
+            >
+              Витрина книг{' '}
+              <span className={openAcard? 'nav__list_item-text-first-open': 'nav__list_item-text-arrow-close'}> </span>
+            </NavLink>
 
+
+          <ul className={openAcard ? 'nav__list_second' : 'close__acardion'}>
+            <li className='nav__list_second-item'>
               <NavLink
-                onClick={() =>openAcard? setOpenAcard(false): setOpenAcard(true)}
-                data-test-id='navigation-showcase'
-                className={({ isActive }) =>
-                  isActive
-                    ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
-                    : 'link nav__list_item-text nav__list_item-text-first '
-                }
+                data-test-id='navigation-books'
+                onClick={closeBurgerMenu}
+                className={({ isActive }) => (isActive ? 'link-active' : 'link')}
                 to='/'
               >
-                Витрина книг{' '}
-                <span className={openAcard? 'nav__list_item-text-first-open': 'nav__list_item-text-arrow-close'}> </span>
+                Все книги
               </NavLink>
+              <span className='nav__list_second-item--count'>100</span>
+            </li>
 
-
-            <ul className={openAcard ? 'nav__list_second' : 'close__acardion'}>
-              <li className='nav__list_second-item'>
+            {categories.map((element:any) => (
+              <li key={element.id} className='nav__list_second-item'>
                 <NavLink
-                  data-test-id='navigation-books'
                   onClick={closeBurgerMenu}
                   className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                  to='/'
+                  to={`/books/${element.path}`}
                 >
-                  Все книги
+                  {element.name}
                 </NavLink>
-                <span className='nav__list_second-item--count'>100</span>
+                {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
               </li>
-
-              {categories.map((element:any) => (
-                <li key={element.id} className='nav__list_second-item'>
-                  <NavLink
-                    onClick={closeBurgerMenu}
-                    className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                    to={`/books/${element.path}`}
-                  >
-                    {element.name}
-                  </NavLink>
-                  {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
-                </li>
-              ))}
-            </ul>
-          </li>
-          <li  className='nav__list_item'>
-
-            <NavLink
-
-              data-test-id='navigation-terms'
-              className={({ isActive }) => (isActive ? 'first-link-active' : 'link')}
-              to='/rules'
-            >
-              <span  className='nav__list_item-text'>Правила пользования</span>
-            </NavLink>
-          </li>
-          <li   className='nav__list_item'>
-            <NavLink
-
-              data-test-id='navigation-contract'
-              className={({ isActive }) => (isActive ? 'first-link-active ': 'link ')}
-              to='/treaty'
-            >
-              <span  className='nav__list_item-text'>Договор оферты</span>
-            </NavLink>
-          </li>
-
-          <ul className='burger__navigation_profile'>
-            <li  className='nav__list_item'>
-              <NavLink onClick={closeBurgerMenu} to='/'>
-                <span className='nav__list_item-text'>Профиль</span>
-              </NavLink>
-            </li>
-            <li className='nav__list_item'>
-              <NavLink onClick={closeBurgerMenu} to='/'>
-                <span className='nav__list_item-text'>Выход</span>
-              </NavLink>
-            </li>
+            ))}
           </ul>
+        </li>
+        <li  className='nav__list_item'>
+
+          <NavLink
+
+            data-test-id='navigation-terms'
+            className={({ isActive }) => (isActive ? 'first-link-active' : 'link')}
+            to='/rules'
+          >
+            <span  className='nav__list_item-text'>Правила пользования</span>
+          </NavLink>
+        </li>
+        <li   className='nav__list_item'>
+          <NavLink
+
+            data-test-id='navigation-contract'
+            className={({ isActive }) => (isActive ? 'first-link-active ': 'link ')}
+            to='/treaty'
+          >
+            <span  className='nav__list_item-text'>Договор оферты</span>
+          </NavLink>
+        </li>
+
+        <ul className='burger__navigation_profile'>
+          <li  className='nav__list_item'>
+            <NavLink onClick={closeBurgerMenu} to='/'>
+              <span className='nav__list_item-text'>Профиль</span>
+            </NavLink>
+          </li>
+          <li className='nav__list_item'>
+            <NavLink onClick={closeBurgerMenu} to='/'>
+              <span className='nav__list_item-text'>Выход</span>
+            </NavLink>
+          </li>
         </ul>
-      </div>
-    </aside>
+      </ul>
+    </div>
+  </aside>
   );
 };
