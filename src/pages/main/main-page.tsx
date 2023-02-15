@@ -13,14 +13,12 @@ export const MainPage = () => {
   const valueStateBurger = useSelector((state: RootState) => state.burger);
   const { error,loading} = useSelector((state: any) => state.books);
   if (error) {
-    <>
+  return   <div className='container main-container'>
       <Navigation />
       <ResError />
-    </>;
+    </div>;
   }
-if(loading){
-  <Loader errors={error} />
-}
+
   return (
     <main className='main'>
       <div className='container main-container'>
@@ -30,3 +28,4 @@ if(loading){
     </main>
   );
 };
+

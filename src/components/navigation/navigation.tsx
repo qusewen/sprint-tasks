@@ -103,7 +103,7 @@ export const Navigation = () => {
     );
   }
   if (loading) {
-    return <Loader errors={error} />;
+    return <Loader />;
   }
 
   return (

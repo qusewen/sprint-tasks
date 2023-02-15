@@ -31,6 +31,7 @@ export const reduserCategories =(state = initialState,  action: PayloadAction) =
         case categoriesType.SET_CATEGORIES_ERROR:
           return {
             ...state,
+            loading:false,
             error: true,
           };
         default:

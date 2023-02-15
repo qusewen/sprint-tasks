@@ -22,13 +22,17 @@ useEffect(() => {
   dispatch(getBooks())
 },[dispatch])
 
+
+
 if(error){
   return <ResError/>
 }
 if (loading) {
-  return <Loader  errors={error}/>;
+  return       <div>
+        <Loader />
+        <div className='enter'> </div>
+      </div>;
 }
-
   return (
     <div>
       <FilterBar

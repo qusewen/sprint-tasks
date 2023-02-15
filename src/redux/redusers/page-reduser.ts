@@ -31,6 +31,7 @@ export const reduserPage =(state = initialState,  action: PayloadAction) => {
         case pageType.SET_PAGE_ERROR:
           return {
             ...state,
+            loading:false,
             error: true,
           };
         default:

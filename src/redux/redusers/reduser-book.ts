@@ -31,6 +31,7 @@ export const reduserBooks =(state = initialState,  action: PayloadAction) => {
         case bookTypes.SET_BOOKS_ERROR:
           return {
             ...state,
+            loading:false,
             error: true,
           };
         default:

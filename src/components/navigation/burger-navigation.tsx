@@ -51,7 +51,7 @@ export const BurgerNavigation = () => {
     return <ResError/>
   }
   if (loading && !error) {
-    return <Loader  errors={error}/>;
+    return <Loader />;
   }
   return (
     <>

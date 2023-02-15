@@ -38,21 +38,20 @@ export const BookPage = () => {
 
   if (error) {
     return (
-      <div className='error_page'>
+      <div>
         <ResError />
-        <RouteBar categori='Бизнеc' name={page?.title} />
-        <div className='bodys'> </div>
+        <div className='enter'> </div>
       </div>
     );
   }
   if (loading) {
     return (
       <div>
-        <Loader errors={error} />
+        <Loader />
+        <div className='enter'> </div>
       </div>
     );
   }
-
 
   return (
     <>
