@@ -47,10 +47,10 @@ export const BurgerNavigation = () => {
       setOpenAcard(true);
     }
   };
-  if(error && !loading){
+  if(error){
     return <ResError/>
   }
-  if (loading && !error) {
+  if (loading) {
     return <Loader />;
   }
   return (
