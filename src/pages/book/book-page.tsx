@@ -45,7 +45,6 @@ export const BookPage = () => {
       </div>
     );
   }
-
   if (loading) {
     return (
       <div>
@@ -53,6 +52,7 @@ export const BookPage = () => {
       </div>
     );
   }
+
 
   return (
     <>
