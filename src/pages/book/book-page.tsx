@@ -22,7 +22,7 @@ type Param = {
 export const BookPage = () => {
   const [openAcard, setOpenAcard] = useState(false);
   const { id } = useParams<Param>();
-  const { page, loading, error } = useSelector((state: any) => state.page);
+  const { page, loading,success, error } = useSelector((state: any) => state.page);
 
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -36,27 +36,27 @@ export const BookPage = () => {
     }
   };
 
-  if (error) {
-    return (
-      <div>
-        <ResError />
-        <div className='enter'> </div>
-      </div>
-    );
-  }
-  if (loading) {
-    return (
-      <div>
-        <Loader />
-        <div className='enter'> </div>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+
+  //       <ResError />
+
+  //   );
+  // }
+  // if (loading) {
+  //   return (
+
+  //       <Loader />
+
+  //   );
+  // }
 
   return (
     <>
+    {loading? <Loader/>: ''}
+    {error? <ResError/>: ''}
       <RouteBar categori={page?.categories} name={page?.title} />
-      <section className='book'>
+{success? (<section className='book'>
         <div className='container container-book'>
           <div className='book__information'>
             <div className='book__picture'>
@@ -186,7 +186,8 @@ export const BookPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>) : ''}
+
     </>
   );
 };

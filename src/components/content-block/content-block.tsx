@@ -24,15 +24,15 @@ useEffect(() => {
 
 
 
-if(error){
-  return <ResError/>
-}
-if (loading) {
-  return       <div>
-        <Loader />
-        <div className='enter'> </div>
-      </div>;
-}
+// if(error){
+//   return <ResError/>
+// }
+// if (loading) {
+//   return       <div>
+//         <Loader />
+//         <div className='enter'> </div>
+//       </div>;
+// }
   return (
     <div>
       <FilterBar

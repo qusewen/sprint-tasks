@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
 import './navigation.scss';
-// import { categories } from '../../assets/constants/mock-data.js';
 import { getCategories } from '../../redux/actions/categories-action';
 import { Loader } from '../loader/loader';
 import { ResError } from '../res-error/res-error';
