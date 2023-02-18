@@ -12,14 +12,7 @@ type RootState = {
 export const MainPage = () => {
   const valueStateBurger = useSelector((state: RootState) => state.burger);
   const { error,loading} = useSelector((state: any) => state.books);
-  // if (error) {
-  // return   <div className='container main-container'>
-  //     <ResError />
-  //   </div>;
-  // }
-  // if(loading){
-  //   return <Loader/>
-  // }
+
 
 
   return (

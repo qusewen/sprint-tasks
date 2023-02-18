@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBooks } from '../../redux/actions/books-action';
 import { Card } from '../card/card';
 import { FilterBar } from '../filter-bar/filter-bar';
-import {books} from '../../assets/constants/mock-data'
 import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
-import { Loader } from '../loader/loader';
-import { ResError } from '../res-error/res-error';
 import { AppDispatch } from '../../redux/store';
 
 
@@ -22,17 +19,6 @@ useEffect(() => {
   dispatch(getBooks())
 },[dispatch])
 
-
-
-// if(error){
-//   return <ResError/>
-// }
-// if (loading) {
-//   return       <div>
-//         <Loader />
-//         <div className='enter'> </div>
-//       </div>;
-// }
   return (
     <div>
       <FilterBar
