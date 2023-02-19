@@ -7,6 +7,9 @@
 .closeLoader{
   display: none;
 }
+.bar-none{
+  display: none;
+}
 @media (max-width: 1100px) {
   .square {
     &__body {

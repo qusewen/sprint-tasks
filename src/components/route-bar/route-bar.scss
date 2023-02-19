@@ -17,7 +17,13 @@
         color: #A7A7A7;
     }
 }
+.error-route{
+    grid-row-start: 2;
+    grid-column-start: 1;
 
+    grid-row-end: 3;
+    grid-column-end: 2;
+}
 @media (max-width:760px) {
 .route {
     width: 100%;

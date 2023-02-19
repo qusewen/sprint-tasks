@@ -20,7 +20,7 @@ useEffect(() => {
 },[dispatch])
 
   return (
-    <div>
+    <div className={error? 'bar-none' : ''}>
       <FilterBar
         filterClick={() => {
           setFlag(1);

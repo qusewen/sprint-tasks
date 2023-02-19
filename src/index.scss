@@ -18,6 +18,18 @@ body {
 #root{
   height: 100vh;
 }
+
+
+.footer{
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 50%;
+}
+
+.footer .container{
+  width: 100%;
+}
 *,
 *:before,
 *:after {
