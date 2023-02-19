@@ -16,20 +16,18 @@ body {
 }
 
 #root{
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
 }
 
 
 .footer{
-  display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 50%;
+  margin-top: auto;
 }
 
-.footer .container{
-  width: 100%;
-}
+
 *,
 *:before,
 *:after {

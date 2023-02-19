@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Navigation } from '../../components/navigation/navigation';
 import { ContentBlock } from '../../components/content-block/content-block';
-import './main-page.scss';
 import { ResError } from '../../components/res-error/res-error';
 import { Loader } from '../../components/loader/loader';
+import './main-page.scss';
 
 type RootState = {
   burger: any;
