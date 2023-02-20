@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { getBooks } from '../../redux/actions/books-action';
 import { Card } from '../card/card';
 import { FilterBar } from '../filter-bar/filter-bar';
@@ -10,14 +11,24 @@ import { AppDispatch } from '../../redux/store';
 
 
 
+
 export const ContentBlock = () => {
   const [flag, setFlag] = useState(1);
   const dispatch: AppDispatch = useDispatch();
   const {book,error, loading} = useSelector((state:any) => state.books)
-
+  const {categories} = useSelector((state:any) => state.categories)
+  const[path, setPath] = useState('')
+  const[pathName, setPathName] = useState('')
+  const location = useLocation();
 useEffect(() => {
   dispatch(getBooks())
-},[dispatch])
+  setPath(location.pathname.slice(7))
+  categories.filter((elem: any) => (
+    elem.path ===path? setPathName(elem.name) : ''
+    ))
+},[dispatch, location,categories,path])
+
+  console.log(pathName)
 
   return (
     <div className={error? 'bar-none' : ''}>
