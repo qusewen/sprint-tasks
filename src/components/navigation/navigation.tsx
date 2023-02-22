@@ -56,7 +56,7 @@ export const Navigation = () => {
                       ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
                       : 'link nav__list_item-text nav__list_item-text-first '
                   }
-                  to='/'
+                  to='/all'
                 >
                   Витрина книг{' '}
                   <span className={openAcard ? 'nav__list_item-text-first-open' : 'nav__list_item-text-arrow-close'}>
@@ -118,7 +118,7 @@ export const Navigation = () => {
                   ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
                   : 'link nav__list_item-text nav__list_item-text-first '
               }
-              to='/'
+              to='/all'
             >
               Витрина книг{' '}
               <span className={openAcard ? 'nav__list_item-text-first-open' : 'nav__list_item-text-arrow-close'}>
@@ -132,7 +132,7 @@ export const Navigation = () => {
                   data-test-id='navigation-books'
                   onClick={closeBurgerMenu}
                   className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                  to='/'
+                  to='/all'
                 >
                   Все книги
                 </NavLink>

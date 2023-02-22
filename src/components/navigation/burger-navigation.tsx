@@ -69,7 +69,7 @@ export const BurgerNavigation = () => {
                       ? 'first-link-active nav__list_item-text nav__list_item-text-first'
                       : 'link nav__list_item-text nav__list_item-text-first'
                   }
-                  to='/'
+                  to='/all'
                 >
                   Витрина книг{' '}
                 </NavLink>
@@ -80,11 +80,11 @@ export const BurgerNavigation = () => {
                       data-test-id='burger-books'
                       onClick={closeBurgerMenu}
                       className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                      to='/'
+                      to='/all'
                     >
                       Все книги
                     </NavLink>
-                    <span className='nav__list_second-item--count'>100</span>
+
                   </li>
 
                   {categories.map((element:any) => (

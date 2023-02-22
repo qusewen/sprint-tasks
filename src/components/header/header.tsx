@@ -40,7 +40,7 @@ export const Header = () => {
           </button>
           <BurgerNavigation  data-test-id='burger-navigation'/>
           <div className='header__wrapper'>
-          <Link to='/'>
+          <Link to='/all'>
             <div>
               <img className='header__img' src={logo} alt='logo' />
             </div>
