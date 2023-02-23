@@ -19,6 +19,7 @@ root.render(
     <Provider store={store}>
     <Header/>
       <Routes>
+      <Route  path='/'  element={<MainPage />} />
         <Route  path='/all'  element={<MainPage />} />
         <Route path='/books/all/:id' element={<BookPage/>} />
         <Route path='/books' element={<MainPage />} />

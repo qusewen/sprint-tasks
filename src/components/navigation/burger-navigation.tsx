@@ -90,6 +90,7 @@ export const BurgerNavigation = () => {
                   {categories.map((element:any) => (
                     <li key={Math.random()} className='nav__list_second-item'>
                       <NavLink
+                      data-test-id={`burger-${element.path}`}
                         onClick={closeBurgerMenu}
                         className={({ isActive }) => (isActive ? 'link-active' : 'link')}
                         to={`/books/${element.path}`}

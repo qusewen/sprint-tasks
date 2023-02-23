@@ -19,6 +19,7 @@ export const ContentBlock = () => {
   const [test, setTest] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [focusInput, setFocusInput] = useState(false);
+  const [counts, setCounts] = useState(0)
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
@@ -27,7 +28,9 @@ export const ContentBlock = () => {
     categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : ''));
   }, [location, categories, path]);
   const newArray = [...book];
-  console.log(focusInput);
+  console.log(book);
+
+
   return (
     <div className={error ? 'bar-none' : ''}>
       <FilterBar
@@ -38,16 +41,39 @@ export const ContentBlock = () => {
           setFlag(2);
         }}
         sortClick={() => (test ? setTest(false) : setTest(true))}
-        onInput={(e: any) => setInputValue(e.target.value)}
+        onInput={(e: any) => setInputValue(e.target.value.toLowerCase())}
         onFocus={() => setFocusInput(true)}
         onBlur={() => setFocusInput(false)}
+        sort={test}
       />
       <div className='content'>
         {(test
           ? newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? -1 : 1))
           : newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? 1 : -1))
         ).map((card: any) =>
-          pathName === '' ? (
+          focusInput ? (
+            card.title.toLowerCase().includes(inputValue) ? (
+              <Card
+                cardClass={flag === 1 ? 'card' : 'line__card'}
+                cardImg={flag === 1 ? 'card__photo_img' : 'line_img'}
+                img={!card?.image?.url ? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
+                lineCard={flag === 1 ? 'card__content' : 'line_info'}
+                cardName={flag === 1 ? 'card__name' : 'line__card_name'}
+                name={card.title}
+                cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
+                cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
+                rateContent={flag === 1 ? 'card__rate' : 'item2'}
+                author={card.authors}
+                val={card.rating}
+                buttonContentBody={flag === 1 ? 'card__button' : 'item3'}
+                buttonContent={flag === 1 ? 'card__button' : ' line__button'}
+                id={card.id}
+                key={card.id}
+              />
+            ) : (
+''
+            )
+          ) : pathName === '' ? (
             <Card
               cardClass={flag === 1 ? 'card' : 'line__card'}
               cardImg={flag === 1 ? 'card__photo_img' : 'line_img'}
@@ -83,30 +109,9 @@ export const ContentBlock = () => {
               id={card.id}
               key={card.id}
             />
-          ) : focusInput ? (
-            card.title.toLowerCase().includes(inputValue) ? (
-              <Card
-                cardClass={flag === 1 ? 'card' : 'line__card'}
-                cardImg={flag === 1 ? 'card__photo_img' : 'line_img'}
-                img={!card?.image?.url ? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
-                lineCard={flag === 1 ? 'card__content' : 'line_info'}
-                cardName={flag === 1 ? 'card__name' : 'line__card_name'}
-                name={card.title}
-                cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
-                cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
-                rateContent={flag === 1 ? 'card__rate' : 'item2'}
-                author={card.authors}
-                val={card.rating}
-                buttonContentBody={flag === 1 ? 'card__button' : 'item3'}
-                buttonContent={flag === 1 ? 'card__button' : ' line__button'}
-                id={card.id}
-                key={card.id}
-              />
-            ) : (
-              ''
-            )
+
           ) : (
-            ''
+''
           )
         )}
       </div>

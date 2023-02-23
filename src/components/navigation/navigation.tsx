@@ -12,7 +12,7 @@ const activeStyle = {
 };
 
 type RootState = {
-  burger: any;
+  burger: any
 };
 
 export const Navigation = () => {
@@ -20,8 +20,10 @@ export const Navigation = () => {
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
   const { categories, loading, error } = useSelector((state: any) => state.categories);
+  const { book } = useSelector((state: any) => state.books);
   const dispatch: AppDispatch = useDispatch();
   const location = useLocation();
+  const [count, setCoutn] = useState(0)
   useEffect(() => {
     if (location.pathname === '/treaty' || location.pathname === '/rules') {
       setOpenAcard(false);
@@ -136,19 +138,21 @@ export const Navigation = () => {
                 >
                   Все книги
                 </NavLink>
-                <span className='nav__list_second-item--count'>100</span>
               </li>
 
               {categories.map((element: any) => (
                 <li key={element.id} className='nav__list_second-item'>
                   <NavLink
+                    data-test-id={`navigation-${element.path}`}
                     onClick={closeBurgerMenu}
                     className={({ isActive }) => (isActive ? 'link-active' : 'link')}
                     to={`/books/${element.path}`}
                   >
                     {element.name}
                   </NavLink>
-                  {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
+                  <span className='nav__list_second-item--count'>
+                    {count}
+                  </span>
                 </li>
               ))}
             </ul>
