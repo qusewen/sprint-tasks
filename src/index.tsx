@@ -21,19 +21,9 @@ root.render(
       <Routes>
       <Route  path='/'  element={<MainPage />} />
         <Route  path='/all'  element={<MainPage />} />
+        <Route  path='/books/:categoria'  element={<MainPage />} />
         <Route path='/books/all/:id' element={<BookPage/>} />
-        <Route path='/books' element={<MainPage />} />
-        <Route path='/books/business' element={<MainPage />} />
-        <Route path='/books/psychology' element={<MainPage />} />
-        <Route path='/books/parents' element={<MainPage />} />
-        <Route path='/books/non-fiction' element={<MainPage />} />
-        <Route path='/books/fiction' element={<MainPage />} />
-        <Route path='/books/programming' element={<MainPage />} />
-        <Route path='/books/hobby' element={<MainPage />} />
-        <Route path='/books/design' element={<MainPage />} />
-        <Route path='/books/childish' element={<MainPage />} />
-        <Route path='/books/other' element={<MainPage />} />
-        <Route path='/books' element={<MainPage />} />
+        <Route path='/books/:categories/:id' element={<BookPage/>} />
         <Route path='/rules' element={<Rules/>} />
         <Route path='/treaty' element={<Treaty/>} />
       </Routes>

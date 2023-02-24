@@ -16,12 +16,13 @@ import { AppDispatch } from '../../redux/store';
 import './book-page.scss';
 
 type Param = {
-  id: any;
+  id: any,
+  categories: any
 };
 
 export const BookPage = () => {
   const [openAcard, setOpenAcard] = useState(false);
-  const { id } = useParams<Param>();
+  const { categories ,id } = useParams<Param>();
   const { page, loading, success, error } = useSelector((state: any) => state.page);
 
   const dispatch: AppDispatch = useDispatch();
@@ -35,12 +36,12 @@ export const BookPage = () => {
       setOpenAcard(true);
     }
   };
-
+  console.log(categories)
   return (
     <>
       {loading ? <Loader /> : ''}
       {error ? <ResError /> : ''}
-      <RouteBar categori={page?.categories} name={page?.title} />
+      <RouteBar categoriesLink={categories === undefined? '/books/all': `/books/${categories}`} categori={categories === undefined? 'Все книги': page?.categories} name={page?.title} />
       {success ? (
         <section className='book'>
           <div className='container container-book'>
@@ -69,7 +70,7 @@ export const BookPage = () => {
               </div>
               <div className='book__text'>
                 <div className='book__text_body'>
-                  <h2 className='book__text_title'>{page.title}</h2>
+                  <h2 data-test-id='book-title' className='book__text_title'>{page.title}</h2>
                   <p className='book__text_subtitle'>{page?.authors}</p>
                   <div className='book__button'>
                     <Button buttonClass='book__button_new' buttonText='Забронировать' />

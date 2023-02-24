@@ -1,34 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { getBooks } from '../../redux/actions/books-action';
 import { Card } from '../card/card';
 import { FilterBar } from '../filter-bar/filter-bar';
 import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
 import { AppDispatch } from '../../redux/store';
+import { Count } from '../count/count';
+
+type Param ={
+  categoria:any
+}
 
 export const ContentBlock = () => {
+  const { categoria } = useParams<Param>();
   const [flag, setFlag] = useState(1);
   const dispatch: AppDispatch = useDispatch();
   const { book, error, loading } = useSelector((state: any) => state.books);
   const { categories } = useSelector((state: any) => state.categories);
-  const [path, setPath] = useState('');
-  const [pathName, setPathName] = useState('');
+  const [path, setPath] = useState('all');
+  const [pathName, setPathName] = useState('all');
   const location = useLocation();
   const [test, setTest] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [focusInput, setFocusInput] = useState(false);
-  const [counts, setCounts] = useState(0)
+
+
+
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
   useEffect(() => {
-    setPath(location.pathname.slice(7));
+    if(categoria === undefined){
+      setPath('all')
+    }else{
+      setPath(categoria);
+    }
+
     categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : ''));
-  }, [location, categories, path]);
+  }, [location, categories, path,categoria]);
   const newArray = [...book];
-  console.log(book);
+  console.log(path);
 
 
   return (
@@ -67,13 +80,13 @@ export const ContentBlock = () => {
                 val={card.rating}
                 buttonContentBody={flag === 1 ? 'card__button' : 'item3'}
                 buttonContent={flag === 1 ? 'card__button' : ' line__button'}
+                categories={path}
                 id={card.id}
                 key={card.id}
+                inputValue={inputValue}
               />
-            ) : (
-''
-            )
-          ) : pathName === '' ? (
+            ) :('')
+          ) : pathName === 'all' ? (
             <Card
               cardClass={flag === 1 ? 'card' : 'line__card'}
               cardImg={flag === 1 ? 'card__photo_img' : 'line_img'}
@@ -90,6 +103,8 @@ export const ContentBlock = () => {
               buttonContent={flag === 1 ? 'card__button' : ' line__button'}
               id={card.id}
               key={card.id}
+              categories={path}
+              inputValue={inputValue}
             />
           ) : card.categories.includes(pathName) ? (
             <Card
@@ -108,6 +123,8 @@ export const ContentBlock = () => {
               buttonContent={flag === 1 ? 'card__button' : ' line__button'}
               id={card.id}
               key={card.id}
+              categories={path}
+              inputValue={inputValue}
             />
 
           ) : (

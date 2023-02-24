@@ -8,6 +8,7 @@ import { getCategories } from '../../redux/actions/categories-action';
 import { ResError } from '../res-error/res-error';
 import { Loader } from '../loader/loader';
 import { AppDispatch } from '../../redux/store';
+import { Count } from '../count/count';
 
 type RootState = {
   burger: any
@@ -97,7 +98,7 @@ export const BurgerNavigation = () => {
                       >
                         {element.name}
                       </NavLink>
-                      {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
+                      <Count datatest={`burger-book-count-for-${element.path}`} name={element.name}/>
                     </li>
                   ))}
                 </ul>

@@ -6,6 +6,7 @@ import { getCategories } from '../../redux/actions/categories-action';
 import { Loader } from '../loader/loader';
 import { ResError } from '../res-error/res-error';
 import { AppDispatch } from '../../redux/store';
+import { Count } from '../count/count';
 
 const activeStyle = {
   background: 'linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%)',
@@ -24,6 +25,11 @@ export const Navigation = () => {
   const dispatch: AppDispatch = useDispatch();
   const location = useLocation();
   const [count, setCoutn] = useState(0)
+  const newArrayBook = [...book]
+
+
+
+
   useEffect(() => {
     if (location.pathname === '/treaty' || location.pathname === '/rules') {
       setOpenAcard(false);
@@ -151,7 +157,7 @@ export const Navigation = () => {
                     {element.name}
                   </NavLink>
                   <span className='nav__list_second-item--count'>
-                    {count}
+                    <Count datatest={`navigation-book-count-for-${element.path}`} name={element.name}/>
                   </span>
                 </li>
               ))}
