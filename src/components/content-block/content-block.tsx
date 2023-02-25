@@ -38,12 +38,27 @@ export const ContentBlock = () => {
       setPath(categoria);
     }
 
-    categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : ''));
+categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : ''));
   }, [location, categories, path,categoria]);
   const newArray = [...book];
   console.log(path);
 
+  const sortFunc = () => {
+    const newArrayCard:any = [''];
+    newArray.map((card: any) => (
+      card.title.toLowerCase().includes(inputValue)? newArrayCard.push(card) : ''
+    ))
+    return newArrayCard
+  }
+  const sortFuncSecond = () => {
+    const newSortArray:any = [];
+    newArray.map((card:any) => (
+      card.categories.includes(pathName)?newSortArray.push(card):''
+    ))
+    return newSortArray
+  }
 
+console.log(sortFuncSecond().length)
   return (
     <div className={error ? 'bar-none' : ''}>
       <FilterBar
@@ -60,6 +75,8 @@ export const ContentBlock = () => {
         sort={test}
       />
       <div className='content'>
+        {focusInput? (sortFunc().length <= 1 ? (<h2 className='error-search-title' data-test-id='search-result-not-found'>По запросу ничего не найдено</h2>) : ('')):('')  }
+{sortFuncSecond().length === 0? (<h2 className='error-search-title' data-test-id='search-result-not-found'>В этой категории книг ещё нет</h2>):('')}
         {(test
           ? newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? -1 : 1))
           : newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? 1 : -1))

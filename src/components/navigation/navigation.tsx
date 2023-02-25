@@ -30,6 +30,7 @@ export const Navigation = () => {
 
 
 
+
   useEffect(() => {
     if (location.pathname === '/treaty' || location.pathname === '/rules') {
       setOpenAcard(false);
