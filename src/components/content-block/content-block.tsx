@@ -33,7 +33,7 @@ export const ContentBlock = () => {
   const [test, setTest] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [focusInput, setFocusInput] = useState(false);
-
+const [focusInput2, setFocusInput2] = useState(false)
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
@@ -82,10 +82,13 @@ console.log(focusInput)
         }}
         sortClick={() => (test ? setTest(false) : setTest(true))}
         onInput={(e: any) => setInputValue(e.target.value.toLowerCase())}
-        onFocus={() => setFocusInput(true)}
-        onBlur={() => setFocusInput(false)}
+        onFocus={() =>{
+          setFocusInput(true)
+          setFocusInput2(true)
+        } }
+        onBlur={() => setFocusInput2(false)}
         sort={test}
-        focusInputGlass={focusInput}
+        focusInputGlass={focusInput2}
       />
       <div className='content'>
         {focusInput ? (
