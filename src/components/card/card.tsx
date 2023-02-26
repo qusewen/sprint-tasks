@@ -4,6 +4,7 @@ import { Button } from '../button/button';
 import { Rate } from '../rate/rate';
 import './card.scss';
 
+
 type Props = {
   cardClass: string,
   cardImg: string,
@@ -13,12 +14,14 @@ type Props = {
   rateContent: string,
   val: number,
   cardName: string,
-  name: string,
+  name: any,
   cardAuthor: string,
   author: string[],
   buttonContentBody: string,
   buttonContent: string,
-  id: number
+  categories: string,
+  id: number,
+  inputValue:string
 }
 export const Card = ({
   cardClass,
@@ -34,9 +37,14 @@ export const Card = ({
   author,
   buttonContentBody,
   buttonContent,
-  id
+  categories,
+  id,
+  inputValue
 }: Props) => (
-  <Link className={cardClass} data-test-id='card' to={`/books/all/${id}`}>
+
+
+
+ (  <Link className={cardClass} data-test-id='card' to={`/books/${categories}/${id}`}>
     <div className='card__photo'>
       <img src={img} alt='book' className={cardImg} />
     </div>
@@ -52,5 +60,5 @@ export const Card = ({
         <Button buttonClass={buttonContent} buttonText='Забронировать' />
       </div>
     </div>
-  </Link>
+  </Link>)
 );

@@ -6,13 +6,14 @@ import { getCategories } from '../../redux/actions/categories-action';
 import { Loader } from '../loader/loader';
 import { ResError } from '../res-error/res-error';
 import { AppDispatch } from '../../redux/store';
+import { Count } from '../count/count';
 
 const activeStyle = {
   background: 'linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%)',
 };
 
 type RootState = {
-  burger: any;
+  burger: any
 };
 
 export const Navigation = () => {
@@ -20,11 +21,21 @@ export const Navigation = () => {
   const [closeFlag, setCloseFlag] = useState(valueStateBurger);
   const [openAcard, setOpenAcard] = useState(true);
   const { categories, loading, error } = useSelector((state: any) => state.categories);
+  const { book } = useSelector((state: any) => state.books);
   const dispatch: AppDispatch = useDispatch();
   const location = useLocation();
+  const [count, setCoutn] = useState(0)
+  const newArrayBook = [...book]
+  const [activCat, setActivCat]= useState(true)
+
+
+
+
+
   useEffect(() => {
     if (location.pathname === '/treaty' || location.pathname === '/rules') {
       setOpenAcard(false);
+      setActivCat(false)
     } else {
       setOpenAcard(true);
       dispatch(getCategories());
@@ -54,9 +65,9 @@ export const Navigation = () => {
                   className={({ isActive }) =>
                     isActive
                       ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
-                      : 'link nav__list_item-text nav__list_item-text-first '
+                      : ' first-link-active link nav__list_item-text nav__list_item-text-first '
                   }
-                  to='/'
+                  to='/all'
                 >
                   Витрина книг{' '}
                   <span className={openAcard ? 'nav__list_item-text-first-open' : 'nav__list_item-text-arrow-close'}>
@@ -114,11 +125,11 @@ export const Navigation = () => {
               onClick={() => (openAcard ? setOpenAcard(false) : setOpenAcard(true))}
               data-test-id='navigation-showcase'
               className={({ isActive }) =>
-                isActive
+                isActive || activCat
                   ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
                   : 'link nav__list_item-text nav__list_item-text-first '
               }
-              to='/'
+              to='/all'
             >
               Витрина книг{' '}
               <span className={openAcard ? 'nav__list_item-text-first-open' : 'nav__list_item-text-arrow-close'}>
@@ -132,23 +143,25 @@ export const Navigation = () => {
                   data-test-id='navigation-books'
                   onClick={closeBurgerMenu}
                   className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                  to='/'
+                  to={'/all' && '/'}
                 >
                   Все книги
                 </NavLink>
-                <span className='nav__list_second-item--count'>100</span>
               </li>
 
               {categories.map((element: any) => (
                 <li key={element.id} className='nav__list_second-item'>
                   <NavLink
+                    data-test-id={`navigation-${element.path}`}
                     onClick={closeBurgerMenu}
                     className={({ isActive }) => (isActive ? 'link-active' : 'link')}
                     to={`/books/${element.path}`}
                   >
                     {element.name}
                   </NavLink>
-                  {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
+                  <span className='nav__list_second-item--count'>
+                    <Count datatest={`navigation-book-count-for-${element.path}`} name={element.name}/>
+                  </span>
                 </li>
               ))}
             </ul>

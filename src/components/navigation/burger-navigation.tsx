@@ -8,6 +8,7 @@ import { getCategories } from '../../redux/actions/categories-action';
 import { ResError } from '../res-error/res-error';
 import { Loader } from '../loader/loader';
 import { AppDispatch } from '../../redux/store';
+import { Count } from '../count/count';
 
 type RootState = {
   burger: any
@@ -69,7 +70,7 @@ export const BurgerNavigation = () => {
                       ? 'first-link-active nav__list_item-text nav__list_item-text-first'
                       : 'link nav__list_item-text nav__list_item-text-first'
                   }
-                  to='/'
+                  to='/all'
                 >
                   Витрина книг{' '}
                 </NavLink>
@@ -80,23 +81,24 @@ export const BurgerNavigation = () => {
                       data-test-id='burger-books'
                       onClick={closeBurgerMenu}
                       className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                      to='/'
+                      to='/all'
                     >
                       Все книги
                     </NavLink>
-                    <span className='nav__list_second-item--count'>100</span>
+
                   </li>
 
                   {categories.map((element:any) => (
                     <li key={Math.random()} className='nav__list_second-item'>
                       <NavLink
+                      data-test-id={`burger-${element.path}`}
                         onClick={closeBurgerMenu}
                         className={({ isActive }) => (isActive ? 'link-active' : 'link')}
                         to={`/books/${element.path}`}
                       >
                         {element.name}
                       </NavLink>
-                      {/* <span className='nav__list_second-item--count'>{element.coutn}</span> */}
+                      <Count datatest={`burger-book-count-for-${element.path}`} name={element.name}/>
                     </li>
                   ))}
                 </ul>

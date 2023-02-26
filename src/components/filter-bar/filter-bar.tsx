@@ -7,8 +7,14 @@ import './filter-bar.scss';
 type Props ={
   filterClick: React.MouseEventHandler<HTMLButtonElement>,
   filterSecondClick: React.MouseEventHandler<HTMLButtonElement>
+  sortClick:React.MouseEventHandler<HTMLButtonElement>,
+  onInput:React.FormEventHandler,
+  onFocus:React.FormEventHandler,
+  onBlur:React.FormEventHandler,
+  sort:boolean,
+  focusInputGlass:boolean
 }
-export const FilterBar = ({ filterClick, filterSecondClick }: Props) => {
+export const FilterBar = ({ filterClick, filterSecondClick, sortClick, onInput, onFocus,onBlur, sort,focusInputGlass }: Props) => {
   const [searchState, setSearchState] = useState(false)
   const handleSearch =()=>{
     setSearchState(true)
@@ -19,8 +25,8 @@ export const FilterBar = ({ filterClick, filterSecondClick }: Props) => {
   return(
   <div className='filter__bar'>
 <div className='filter__bar-item'>
-<Search  searchName={searchState? ' search search_on':'search'} onClick={handleSearch} onclick2={handleClose}  searchState={searchState}/>
-    <Filter filterName={searchState? 'filter_off':'select'} />
+<Search focusInputGlass={focusInputGlass} onBlur={onBlur} onFocus={onFocus}  onInput={onInput} searchName={searchState? ' search search_on':'search'} onClick={handleSearch} onclick2={handleClose}  searchState={searchState}/>
+    <Filter sort={sort} sortClick={sortClick} filterName={searchState? 'filter_off':'select'} />
 </div>
     <SquareFilter squareName={searchState? 'filter_off':'square'} filterClick={filterClick} filterSecondClick={filterSecondClick} />
   </div>
