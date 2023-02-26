@@ -4,6 +4,9 @@
   justify-content: flex-start;
   margin: 32px 0 0 6px;
 }
+div{
+  width: 100%;
+}
 .error-search-title{
   font-weight: 700;
   font-size: 32px;
@@ -16,6 +19,9 @@
   align-items: center;
   justify-content: center;
   height: 50vh;
+  width: 100%;
+}
+.test{
   width: 100%;
 }
 .activeClass{
@@ -47,8 +53,12 @@
   align-items: center;
   justify-content: center;
 }
+.square{
+  justify-content: flex-end;
+}
 @media (max-width: 1100px) {
   .square {
+
     &__body {
       width: 38px;
     }

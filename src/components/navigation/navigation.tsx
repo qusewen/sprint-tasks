@@ -26,6 +26,7 @@ export const Navigation = () => {
   const location = useLocation();
   const [count, setCoutn] = useState(0)
   const newArrayBook = [...book]
+  const [activCat, setActivCat]= useState(true)
 
 
 
@@ -34,6 +35,7 @@ export const Navigation = () => {
   useEffect(() => {
     if (location.pathname === '/treaty' || location.pathname === '/rules') {
       setOpenAcard(false);
+      setActivCat(false)
     } else {
       setOpenAcard(true);
       dispatch(getCategories());
@@ -63,7 +65,7 @@ export const Navigation = () => {
                   className={({ isActive }) =>
                     isActive
                       ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
-                      : 'link nav__list_item-text nav__list_item-text-first '
+                      : ' first-link-active link nav__list_item-text nav__list_item-text-first '
                   }
                   to='/all'
                 >
@@ -123,7 +125,7 @@ export const Navigation = () => {
               onClick={() => (openAcard ? setOpenAcard(false) : setOpenAcard(true))}
               data-test-id='navigation-showcase'
               className={({ isActive }) =>
-                isActive
+                isActive || activCat
                   ? 'first-link-active  nav__list_item-text nav__list_item-text-first'
                   : 'link nav__list_item-text nav__list_item-text-first '
               }
