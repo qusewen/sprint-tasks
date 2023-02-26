@@ -143,7 +143,7 @@ export const Navigation = () => {
                   data-test-id='navigation-books'
                   onClick={closeBurgerMenu}
                   className={({ isActive }) => (isActive ? 'link-active' : 'link')}
-                  to='/all'
+                  to={'/all' && '/'}
                 >
                   Все книги
                 </NavLink>

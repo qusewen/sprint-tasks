@@ -65,10 +65,14 @@ export const ContentBlock = () => {
 
     return newSortArray;
   };
+useEffect(() => {
+  setFocusInput(false)
+}, [location])
 
+console.log(focusInput)
   console.log(sortFuncSecond().length);
   return (
-    <div className={error ? 'bar-none' : ''}>
+    <div className={error ? 'bar-none div' : 'div'}>
       <FilterBar
         filterClick={() => {
           setFlag(1);
