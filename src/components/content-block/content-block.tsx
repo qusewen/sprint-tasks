@@ -93,7 +93,7 @@ console.log(sortFuncSecond().length)
       />
       <div className='content'>
         {focusInput? (sortFunc().length <= 1 ? (<h2 className='error-search-title' data-test-id='search-result-not-found'>По запросу ничего не найдено</h2>) : ('')):('')  }
-{sortFuncSecond().length === 0? (<h2 className='error-search-title' data-test-id='search-result-not-found'>В этой категории книг ещё нет</h2>):('')}
+{sortFuncSecond().length === 0? (<h2 className='error-search-title' data-test-id='empty-category'>В этой категории книг ещё нет</h2>):('')}
         {(test
           ? newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? -1 : 1))
           : newArray.sort((a: any, b: any) => (+a.rating < +b.rating ? 1 : -1))
