@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import logo from '../../assets/svg/logo.svg';
+import logo from '../../assets/svg/logo.png';
 import person from '../../assets/png/avatar.png';
 import './header.scss';
 import {BurgerNavigation} from '../navigation/burger-navigation';

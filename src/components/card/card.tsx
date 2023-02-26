@@ -14,7 +14,7 @@ type Props = {
   rateContent: string,
   val: number,
   cardName: string,
-  name: string,
+  name: any,
   cardAuthor: string,
   author: string[],
   buttonContentBody: string,

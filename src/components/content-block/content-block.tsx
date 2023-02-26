@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
+import Highlighter from "react-highlight-words";
 import { getBooks } from '../../redux/actions/books-action';
 import { Card } from '../card/card';
 import { FilterBar } from '../filter-bar/filter-bar';
 import unbook from '../../assets/jpg/badbook.jpg';
 import './content-block.scss';
 import { AppDispatch } from '../../redux/store';
-import { Count } from '../count/count';
+
+
 
 type Param ={
   categoria:any
 }
+type Highlight= {
+  children:string,
+  highlightIndex: number
 
+}
+const Highlights = ({ children, highlightIndex }: Highlight) => (
+  <span data-test-id='highlight-matches' className='activeClass'>{children}</span>
+);
 export const ContentBlock = () => {
   const { categoria } = useParams<Param>();
   const [flag, setFlag] = useState(1);
@@ -28,9 +37,11 @@ export const ContentBlock = () => {
 
 
 
+
+
   useEffect(() => {
     dispatch(getBooks());
-  }, [dispatch]);
+  }, [dispatch, path]);
   useEffect(() => {
     if(categoria === undefined){
       setPath('all')
@@ -40,6 +51,7 @@ export const ContentBlock = () => {
 
 categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : ''));
   }, [location, categories, path,categoria]);
+
   const newArray = [...book];
   console.log(path);
 
@@ -52,9 +64,14 @@ categories.filter((elem: any) => (elem.path === path ? setPathName(elem.name) : 
   }
   const sortFuncSecond = () => {
     const newSortArray:any = [];
-    newArray.map((card:any) => (
-      card.categories.includes(pathName)?newSortArray.push(card):''
-    ))
+    if(pathName === 'all'){
+      newSortArray.push(book)
+    }else{
+      newArray.map((card:any) => (
+        card.categories.includes(pathName)?newSortArray.push(card):''
+      ))
+    }
+
     return newSortArray
   }
 
@@ -89,7 +106,15 @@ console.log(sortFuncSecond().length)
                 img={!card?.image?.url ? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
                 lineCard={flag === 1 ? 'card__content' : 'line_info'}
                 cardName={flag === 1 ? 'card__name' : 'line__card_name'}
-                name={card.title}
+                name={<Highlighter
+                  highlightClassName="activeClass"
+                  searchWords={[inputValue]}
+                  autoEscape={true}
+                  textToHighlight={card.title}
+                  allowAsProps={true}
+                  highlightTag={Highlights}
+
+                />}
                 cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
                 cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
                 rateContent={flag === 1 ? 'card__rate' : 'item2'}
@@ -101,6 +126,7 @@ console.log(sortFuncSecond().length)
                 id={card.id}
                 key={card.id}
                 inputValue={inputValue}
+
               />
             ) :('')
           ) : pathName === 'all' ? (
@@ -110,7 +136,13 @@ console.log(sortFuncSecond().length)
               img={!card?.image?.url ? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
               lineCard={flag === 1 ? 'card__content' : 'line_info'}
               cardName={flag === 1 ? 'card__name' : 'line__card_name'}
-              name={card.title}
+              name={<Highlighter
+                highlightClassName="activeClass"
+                searchWords={[inputValue]}
+                autoEscape={true}
+                textToHighlight={card.title}
+                highlightTag={Highlights}
+              />}
               cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
               cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
               rateContent={flag === 1 ? 'card__rate' : 'item2'}
@@ -130,7 +162,13 @@ console.log(sortFuncSecond().length)
               img={!card?.image?.url ? unbook : `https://strapi.cleverland.by${card?.image?.url}`}
               lineCard={flag === 1 ? 'card__content' : 'line_info'}
               cardName={flag === 1 ? 'card__name' : 'line__card_name'}
-              name={card.title}
+              name={<Highlighter
+                highlightTag={Highlights}
+                highlightClassName="activeClass"
+                searchWords={[inputValue]}
+                autoEscape={true}
+                textToHighlight={card.title}
+              />}
               cardAuthor={flag === 1 ? 'card__author' : 'line__card_author'}
               cardContent={flag === 1 ? 'card__content_link' : 'item0 '}
               rateContent={flag === 1 ? 'card__rate' : 'item2'}

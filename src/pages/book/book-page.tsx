@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { books } from '../../assets/constants/mock-data';
 import noPic from '../../assets/jpg/badbook.jpg';
-import personImg from '../../assets/svg/person.svg';
+import personImg from '../../assets/svg/person.png';
 import { Button } from '../../components/button/button';
 import { Loader } from '../../components/loader/loader';
 import { Rate } from '../../components/rate/rate';
